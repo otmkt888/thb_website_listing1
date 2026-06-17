@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /go/
 
-Sitemap: https://yourdomain.com/sitemap-index.xml
+Sitemap: https://otmkt888.github.io/thb_website_listing1/sitemap-index.xml

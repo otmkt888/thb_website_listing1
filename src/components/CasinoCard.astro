@@ -29,7 +29,8 @@ const {
 } = Astro.props;
 
 const casinoName = title.split(':')[0].trim();
-const affiliateUrl = `/go/${affiliateLinkId}/`;
+const base = import.meta.env.BASE_URL;
+const affiliateUrl = `${base}go/${affiliateLinkId}/`;
 ---
 
 <div class:list={[
@@ -88,7 +89,7 @@ const affiliateUrl = `/go/${affiliateLinkId}/`;
 
   <!-- Read review link -->
   <a
-    href={`/review/${slug}/`}
+    href={`${base}review/${slug}/`}
     class="text-cta hover:text-cta-hover text-sm transition-colors text-center"
   >
     อ่านรีวิวฉบับเต็ม →

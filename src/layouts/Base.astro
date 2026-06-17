@@ -9,8 +9,9 @@ interface Props {
 }
 
 const { title, description, canonicalUrl, schema } = Astro.props;
-const siteUrl = import.meta.env.SITE || 'https://yourdomain.com';
+const siteUrl = import.meta.env.SITE || 'https://otmkt888.github.io';
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, siteUrl).href;
+const base = import.meta.env.BASE_URL; // "/thb_website_listing1/"
 ---
 
 <!DOCTYPE html>
@@ -21,7 +22,7 @@ const canonical = canonicalUrl ?? new URL(Astro.url.pathname, siteUrl).href;
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
-  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="sitemap" href={`${base}sitemap-index.xml`} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
@@ -37,15 +38,15 @@ const canonical = canonicalUrl ?? new URL(Astro.url.pathname, siteUrl).href;
   <!-- Header -->
   <header class="border-b border-border-card sticky top-0 z-50 bg-bg-primary/95 backdrop-blur">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="/" class="text-white font-bold text-xl hover:text-cta transition-colors">
+      <a href={base} class="text-white font-bold text-xl hover:text-cta transition-colors">
         12B SPORTS
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="/" class="text-text-muted hover:text-white transition-colors">หน้าแรก</a>
-        <a href="/review/12bet/" class="text-text-muted hover:text-white transition-colors">รีวิว 12BET</a>
-        <a href="/12b-sports/" class="text-text-muted hover:text-white transition-colors">12B SPORTS</a>
-        <a href="/how-we-rate/" class="text-text-muted hover:text-white transition-colors">วิธีการประเมิน</a>
-        <a href="/responsible-gambling/" class="text-text-muted hover:text-white transition-colors">เดิมพันอย่างรับผิดชอบ</a>
+        <a href={base} class="text-text-muted hover:text-white transition-colors">หน้าแรก</a>
+        <a href={`${base}review/12bet/`} class="text-text-muted hover:text-white transition-colors">รีวิว 12BET</a>
+        <a href={`${base}12b-sports/`} class="text-text-muted hover:text-white transition-colors">12B SPORTS</a>
+        <a href={`${base}how-we-rate/`} class="text-text-muted hover:text-white transition-colors">วิธีการประเมิน</a>
+        <a href={`${base}responsible-gambling/`} class="text-text-muted hover:text-white transition-colors">เดิมพันอย่างรับผิดชอบ</a>
       </nav>
       <!-- Mobile menu button -->
       <button
@@ -61,11 +62,11 @@ const canonical = canonicalUrl ?? new URL(Astro.url.pathname, siteUrl).href;
     <!-- Mobile nav -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-border-card">
       <nav class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
-        <a href="/" class="text-text-muted hover:text-white transition-colors">หน้าแรก</a>
-        <a href="/review/12bet/" class="text-text-muted hover:text-white transition-colors">รีวิว 12BET</a>
-        <a href="/12b-sports/" class="text-text-muted hover:text-white transition-colors">12B SPORTS</a>
-        <a href="/how-we-rate/" class="text-text-muted hover:text-white transition-colors">วิธีการประเมิน</a>
-        <a href="/responsible-gambling/" class="text-text-muted hover:text-white transition-colors">เดิมพันอย่างรับผิดชอบ</a>
+        <a href={base} class="text-text-muted hover:text-white transition-colors">หน้าแรก</a>
+        <a href={`${base}review/12bet/`} class="text-text-muted hover:text-white transition-colors">รีวิว 12BET</a>
+        <a href={`${base}12b-sports/`} class="text-text-muted hover:text-white transition-colors">12B SPORTS</a>
+        <a href={`${base}how-we-rate/`} class="text-text-muted hover:text-white transition-colors">วิธีการประเมิน</a>
+        <a href={`${base}responsible-gambling/`} class="text-text-muted hover:text-white transition-colors">เดิมพันอย่างรับผิดชอบ</a>
       </nav>
     </div>
   </header>
@@ -88,10 +89,10 @@ const canonical = canonicalUrl ?? new URL(Astro.url.pathname, siteUrl).href;
         <div>
           <h3 class="text-white font-semibold mb-3">ลิงก์ด่วน</h3>
           <ul class="space-y-2 text-sm">
-            <li><a href="/review/12bet/" class="text-text-muted hover:text-cta transition-colors">รีวิว 12BET</a></li>
-            <li><a href="/12b-sports/" class="text-text-muted hover:text-cta transition-colors">12B SPORTS คืออะไร</a></li>
-            <li><a href="/how-we-rate/" class="text-text-muted hover:text-cta transition-colors">วิธีการประเมิน</a></li>
-            <li><a href="/responsible-gambling/" class="text-text-muted hover:text-cta transition-colors">เดิมพันอย่างรับผิดชอบ</a></li>
+            <li><a href={`${base}review/12bet/`} class="text-text-muted hover:text-cta transition-colors">รีวิว 12BET</a></li>
+            <li><a href={`${base}12b-sports/`} class="text-text-muted hover:text-cta transition-colors">12B SPORTS คืออะไร</a></li>
+            <li><a href={`${base}how-we-rate/`} class="text-text-muted hover:text-cta transition-colors">วิธีการประเมิน</a></li>
+            <li><a href={`${base}responsible-gambling/`} class="text-text-muted hover:text-cta transition-colors">เดิมพันอย่างรับผิดชอบ</a></li>
           </ul>
         </div>
         <div>

@@ -3,7 +3,8 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://yourdomain.com',
+  site: 'https://otmkt888.github.io',
+  base: '/thb_website_listing1',
   integrations: [
     tailwind(),
     sitemap({

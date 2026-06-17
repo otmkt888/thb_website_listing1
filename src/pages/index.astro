@@ -7,20 +7,21 @@ import { getCollection } from 'astro:content';
 const reviews = await getCollection('reviews', ({ data }) => data.showOnHomepage);
 const sorted = reviews.sort((a, b) => a.data.homepageOrder - b.data.homepageOrder);
 
-const siteUrl = import.meta.env.SITE || 'https://yourdomain.com';
+const siteUrl = import.meta.env.SITE || 'https://otmkt888.github.io';
+const base = import.meta.env.BASE_URL;
 
 const itemListSchema = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
   name: 'คาสิโนออนไลน์ที่ดีที่สุดในไทย 2026',
   description: 'รายชื่อคาสิโนออนไลน์ที่แนะนำสำหรับนักเดิมพันไทย จัดอันดับโดยทีมผู้เชี่ยวชาญ',
-  url: siteUrl,
+  url: `${siteUrl}${base}`,
   numberOfItems: sorted.length,
   itemListElement: sorted.map((review, index) => ({
     '@type': 'ListItem',
     position: index + 1,
     name: review.data.title.split(':')[0].trim(),
-    url: `${siteUrl}/review/${review.slug}/`,
+    url: `${siteUrl}${base}review/${review.slug}/`,
     description: review.data.metaDescription,
   })),
 };
@@ -29,7 +30,7 @@ const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: '12B SPORTS',
-  url: siteUrl,
+  url: `${siteUrl}${base}`,
   description: 'พันธมิตรสื่อกีฬาอย่างเป็นทางการของ 12BET ในเอเชียตะวันออกเฉียงใต้',
 };
 
@@ -52,7 +53,7 @@ const schema = [itemListSchema, orgSchema];
         เปรียบเทียบแพลตฟอร์มเดิมพันออนไลน์ชั้นนำ — โบนัส ช่องทางชำระเงิน และประสบการณ์จริงจากทีมผู้เชี่ยวชาญ
       </p>
       <CTAButton
-        href="/go/12bet-homepage/"
+        href={`${base}go/12bet-homepage/`}
         text="ดูแพลตฟอร์มอันดับ 1 → 12BET"
         size="lg"
       />

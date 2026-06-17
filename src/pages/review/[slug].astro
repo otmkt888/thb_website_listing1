@@ -15,8 +15,9 @@ export async function getStaticPaths() {
 const { review } = Astro.props;
 const { Content } = await review.render();
 
-const siteUrl = import.meta.env.SITE || 'https://yourdomain.com';
-const pageUrl = `${siteUrl}/review/${review.slug}/`;
+const siteUrl = import.meta.env.SITE || 'https://otmkt888.github.io';
+const base = import.meta.env.BASE_URL;
+const pageUrl = `${siteUrl}${base}review/${review.slug}/`;
 const casinoName = review.data.title.split(':')[0].trim();
 
 const reviewSchema = {
@@ -38,7 +39,7 @@ const reviewSchema = {
   itemReviewed: {
     '@type': 'Product',
     name: casinoName,
-    url: `${siteUrl}/go/${review.data.affiliateLinkId}/`,
+    url: `${siteUrl}${base}go/${review.data.affiliateLinkId}/`,
   },
 };
 
@@ -46,8 +47,8 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'หน้าแรก', item: siteUrl },
-    { '@type': 'ListItem', position: 2, name: 'รีวิว', item: `${siteUrl}/review/` },
+    { '@type': 'ListItem', position: 1, name: 'หน้าแรก', item: `${siteUrl}${base}` },
+    { '@type': 'ListItem', position: 2, name: 'รีวิว', item: `${siteUrl}${base}review/` },
     { '@type': 'ListItem', position: 3, name: casinoName, item: pageUrl },
   ],
 };
@@ -64,7 +65,7 @@ const schema = [reviewSchema, breadcrumbSchema];
   <div class="max-w-4xl mx-auto px-4 py-10">
     <!-- Breadcrumb -->
     <nav class="text-sm text-text-muted mb-8" aria-label="breadcrumb">
-      <a href="/" class="hover:text-cta transition-colors">หน้าแรก</a>
+      <a href={base} class="hover:text-cta transition-colors">หน้าแรก</a>
       <span class="mx-2">/</span>
       <span>รีวิว</span>
       <span class="mx-2">/</span>
@@ -89,7 +90,7 @@ const schema = [reviewSchema, breadcrumbSchema];
         </div>
         <div class="flex flex-col gap-3 md:min-w-48">
           <CTAButton
-            href={`/go/${review.data.affiliateLinkId}/`}
+            href={`${base}go/${review.data.affiliateLinkId}/`}
             text={`ไปที่ ${casinoName}`}
             size="md"
             fullWidth={true}
@@ -129,7 +130,7 @@ const schema = [reviewSchema, breadcrumbSchema];
       <p class="text-white font-bold text-lg mb-2">พร้อมเริ่มเล่นที่ {casinoName}?</p>
       <p class="text-text-muted mb-4">{review.data.bonusDescription}</p>
       <CTAButton
-        href={`/go/${review.data.affiliateLinkId}/`}
+        href={`${base}go/${review.data.affiliateLinkId}/`}
         text={`รับโบนัสต้อนรับที่ ${casinoName}`}
         size="lg"
         fullWidth={false}

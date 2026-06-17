@@ -6,8 +6,9 @@ import CTAButton from '../components/CTAButton.astro';
 const page = await getEntry('pages', '12b-sports');
 const { Content } = await page.render();
 
-const siteUrl = import.meta.env.SITE || 'https://yourdomain.com';
-const pageUrl = `${siteUrl}/12b-sports/`;
+const siteUrl = import.meta.env.SITE || 'https://otmkt888.github.io';
+const base = import.meta.env.BASE_URL;
+const pageUrl = `${siteUrl}${base}12b-sports/`;
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -52,7 +53,7 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'หน้าแรก', item: siteUrl },
+    { '@type': 'ListItem', position: 1, name: 'หน้าแรก', item: `${siteUrl}${base}` },
     { '@type': 'ListItem', position: 2, name: '12B SPORTS', item: pageUrl },
   ],
 };
@@ -69,7 +70,7 @@ const schema = [faqSchema, breadcrumbSchema];
   <div class="max-w-3xl mx-auto px-4 py-10">
     <!-- Breadcrumb -->
     <nav class="text-sm text-text-muted mb-8">
-      <a href="/" class="hover:text-cta transition-colors">หน้าแรก</a>
+      <a href={base} class="hover:text-cta transition-colors">หน้าแรก</a>
       <span class="mx-2">/</span>
       <span class="text-white">12B SPORTS</span>
     </nav>
@@ -85,7 +86,7 @@ const schema = [faqSchema, breadcrumbSchema];
       <p class="text-white font-bold text-lg mb-2">เข้าถึง 12BET ผ่านช่องทางอย่างเป็นทางการ</p>
       <p class="text-text-muted mb-5">โบนัสต้อนรับ 100% สูงสุด ฿5,000 สำหรับสมาชิกใหม่</p>
       <CTAButton
-        href="/go/12bet-homepage/"
+        href={`${base}go/12bet-homepage/`}
         text="ไปที่ 12BET ผ่านช่องทาง 12B SPORTS"
         size="lg"
       />
