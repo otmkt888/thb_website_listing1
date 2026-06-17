@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bg-primary text-white;
+  }
+  a {
+    @apply transition-colors;
+  }
+}
+
+@layer components {
+  .prose-casino {
+    @apply prose prose-invert prose-lg max-w-none;
+  }
+  .prose-casino h2 {
+    @apply text-white text-xl font-bold mt-8 mb-3;
+  }
+  .prose-casino p {
+    @apply text-text-muted leading-relaxed;
+  }
+  .prose-casino table {
+    @apply w-full text-sm;
+  }
+  .prose-casino th {
+    @apply text-left text-text-muted font-medium pb-2;
+  }
+  .prose-casino td {
+    @apply py-1 text-white;
+  }
+  .prose-casino strong {
+    @apply text-white;
+  }
+  .prose-casino a {
+    @apply text-cta hover:text-cta-hover;
+  }
+  .prose-casino ul {
+    @apply text-text-muted;
+  }
+  .prose-casino li {
+    @apply text-text-muted;
+  }
+}

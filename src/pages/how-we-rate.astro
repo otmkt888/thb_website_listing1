@@ -1,0 +1,41 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const page = await getEntry('pages', 'how-we-rate');
+const { Content } = await page.render();
+
+const siteUrl = import.meta.env.SITE || 'https://yourdomain.com';
+const pageUrl = `${siteUrl}/how-we-rate/`;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'หน้าแรก', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'วิธีการประเมิน', item: pageUrl },
+  ],
+};
+---
+
+<Base
+  title={page.data.seoTitle}
+  description={page.data.metaDescription}
+  canonicalUrl={pageUrl}
+  schema={breadcrumbSchema}
+>
+  <div class="max-w-3xl mx-auto px-4 py-10">
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-text-muted mb-8">
+      <a href="/" class="hover:text-cta transition-colors">หน้าแรก</a>
+      <span class="mx-2">/</span>
+      <span class="text-white">วิธีการประเมิน</span>
+    </nav>
+
+    <h1 class="text-white text-3xl font-extrabold mb-4">{page.data.title}</h1>
+
+    <article class="prose-casino">
+      <Content />
+    </article>
+  </div>
+</Base>

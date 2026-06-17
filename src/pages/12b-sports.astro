@@ -1,0 +1,95 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import CTAButton from '../components/CTAButton.astro';
+
+const page = await getEntry('pages', '12b-sports');
+const { Content } = await page.render();
+
+const siteUrl = import.meta.env.SITE || 'https://yourdomain.com';
+const pageUrl = `${siteUrl}/12b-sports/`;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '12B SPORTS และ 12BET เป็นบริษัทเดียวกันหรือไม่?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'ไม่ใช่ 12B SPORTS เป็นแบรนด์สื่อกีฬาอิสระที่มีความร่วมมือในฐานะพันธมิตรสื่ออย่างเป็นทางการกับ 12BET ทั้งสองบริษัทดำเนินงานแยกกัน',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '12B SPORTS เป็นแพลตฟอร์มเดิมพันไหม?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'ไม่ใช่ 12B SPORTS เป็นสื่อกีฬาดิจิทัล ไม่ใช่แพลตฟอร์มเดิมพัน การเดิมพันทั้งหมดดำเนินการผ่าน 12BET ซึ่งเป็นพันธมิตรผู้สนับสนุนอย่างเป็นทางการ',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'ฉันสามารถเดิมพันผ่าน 12B SPORTS ได้โดยตรงไหม?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'ไม่ได้ คุณต้องสมัครสมาชิกและเดิมพันผ่าน 12BET โดยตรง 12B SPORTS เป็นเพียงช่องทางสื่อที่แนะนำผู้ใช้ไปยัง 12BET',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'การใช้ลิงก์ผ่าน 12B SPORTS มีประโยชน์อะไร?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'การเข้าถึง 12BET ผ่านช่องทางพันธมิตรอย่างเป็นทางการของ 12B SPORTS อาจช่วยให้คุณเข้าถึงโปรโมชั่นพิเศษที่จัดเตรียมไว้สำหรับผู้ใช้ผ่านพันธมิตรสื่อ',
+      },
+    },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'หน้าแรก', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: '12B SPORTS', item: pageUrl },
+  ],
+};
+
+const schema = [faqSchema, breadcrumbSchema];
+---
+
+<Base
+  title={page.data.seoTitle}
+  description={page.data.metaDescription}
+  canonicalUrl={pageUrl}
+  schema={schema}
+>
+  <div class="max-w-3xl mx-auto px-4 py-10">
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-text-muted mb-8">
+      <a href="/" class="hover:text-cta transition-colors">หน้าแรก</a>
+      <span class="mx-2">/</span>
+      <span class="text-white">12B SPORTS</span>
+    </nav>
+
+    <h1 class="text-white text-3xl font-extrabold mb-4">{page.data.title}</h1>
+
+    <article class="prose-casino mb-12">
+      <Content />
+    </article>
+
+    <!-- CTA section -->
+    <div class="bg-bg-card border border-cta/30 rounded-xl p-6 text-center">
+      <p class="text-white font-bold text-lg mb-2">เข้าถึง 12BET ผ่านช่องทางอย่างเป็นทางการ</p>
+      <p class="text-text-muted mb-5">โบนัสต้อนรับ 100% สูงสุด ฿5,000 สำหรับสมาชิกใหม่</p>
+      <CTAButton
+        href="/go/12bet-homepage/"
+        text="ไปที่ 12BET ผ่านช่องทาง 12B SPORTS"
+        size="lg"
+      />
+      <p class="text-text-muted text-xs mt-3">18+ เท่านั้น | เดิมพันอย่างรับผิดชอบ</p>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,30 @@
+---
+interface Props {
+  href: string;
+  text: string;
+  size?: 'sm' | 'md' | 'lg';
+  fullWidth?: boolean;
+  rel?: string;
+}
+
+const { href, text, size = 'md', fullWidth = false, rel = 'noopener noreferrer nofollow' } = Astro.props;
+
+const sizeClasses = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'px-8 py-4 text-lg',
+};
+---
+
+<a
+  href={href}
+  rel={rel}
+  target="_blank"
+  class:list={[
+    'inline-block font-bold rounded-lg bg-cta hover:bg-cta-hover text-white transition-colors duration-200',
+    sizeClasses[size],
+    fullWidth && 'w-full text-center',
+  ]}
+>
+  {text}
+</a>

@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import CasinoListing from '../components/CasinoListing.astro';
+import CTAButton from '../components/CTAButton.astro';
+import { getCollection } from 'astro:content';
+
+const reviews = await getCollection('reviews', ({ data }) => data.showOnHomepage);
+const sorted = reviews.sort((a, b) => a.data.homepageOrder - b.data.homepageOrder);
+
+const siteUrl = import.meta.env.SITE || 'https://yourdomain.com';
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'คาสิโนออนไลน์ที่ดีที่สุดในไทย 2026',
+  description: 'รายชื่อคาสิโนออนไลน์ที่แนะนำสำหรับนักเดิมพันไทย จัดอันดับโดยทีมผู้เชี่ยวชาญ',
+  url: siteUrl,
+  numberOfItems: sorted.length,
+  itemListElement: sorted.map((review, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: review.data.title.split(':')[0].trim(),
+    url: `${siteUrl}/review/${review.slug}/`,
+    description: review.data.metaDescription,
+  })),
+};
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: '12B SPORTS',
+  url: siteUrl,
+  description: 'พันธมิตรสื่อกีฬาอย่างเป็นทางการของ 12BET ในเอเชียตะวันออกเฉียงใต้',
+};
+
+const schema = [itemListSchema, orgSchema];
+---
+
+<Base
+  title="คาสิโนออนไลน์ที่ดีที่สุดในไทย 2026 — แนะนำโดย 12B SPORTS"
+  description="เปรียบเทียบคาสิโนออนไลน์ที่ดีที่สุดสำหรับนักเดิมพันไทย 2026 โบนัส ช่องทางชำระเงิน และรีวิวจากผู้เชี่ยวชาญ จัดอันดับโดย 12B SPORTS พันธมิตรอย่างเป็นทางการของ 12BET"
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-bg-card to-bg-primary border-b border-border-card">
+    <div class="max-w-6xl mx-auto px-4 py-14 text-center">
+      <p class="text-cta text-sm font-semibold tracking-widest uppercase mb-3">12B SPORTS แนะนำ</p>
+      <h1 class="text-white text-3xl md:text-4xl font-extrabold mb-4 leading-tight">
+        คาสิโนออนไลน์ที่ดีที่สุด<br class="hidden md:block" />ในประเทศไทย 2026
+      </h1>
+      <p class="text-text-muted text-lg max-w-2xl mx-auto mb-8">
+        เปรียบเทียบแพลตฟอร์มเดิมพันออนไลน์ชั้นนำ — โบนัส ช่องทางชำระเงิน และประสบการณ์จริงจากทีมผู้เชี่ยวชาญ
+      </p>
+      <CTAButton
+        href="/go/12bet-homepage/"
+        text="ดูแพลตฟอร์มอันดับ 1 → 12BET"
+        size="lg"
+      />
+      <p class="text-text-muted text-xs mt-4">18+ เท่านั้น | เดิมพันอย่างรับผิดชอบ</p>
+    </div>
+  </section>
+
+  <!-- Casino listing -->
+  <CasinoListing />
+
+  <!-- 12B SPORTS trust section -->
+  <section class="bg-bg-card border-y border-border-card">
+    <div class="max-w-6xl mx-auto px-4 py-10 text-center">
+      <h2 class="text-white text-xl font-bold mb-3">ทำไมต้องเชื่อ 12B SPORTS?</h2>
+      <p class="text-text-muted max-w-2xl mx-auto mb-6">
+        12B SPORTS เป็นพันธมิตรสื่อกีฬาอย่างเป็นทางการของ 12BET ทีมงานของเราทดสอบทุกแพลตฟอร์มด้วยบัญชีจริงและเงินจริง
+        ก่อนนำเสนอข้อมูลที่ถูกต้องและเป็นกลางแก่นักเดิมพันไทย
+      </p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div>
+          <p class="text-cta text-2xl font-bold">6+</p>
+          <p class="text-text-muted text-sm">แพลตฟอร์มที่ทดสอบ</p>
+        </div>
+        <div>
+          <p class="text-cta text-2xl font-bold">2026</p>
+          <p class="text-text-muted text-sm">อัปเดตล่าสุด</p>
+        </div>
+        <div>
+          <p class="text-cta text-2xl font-bold">100%</p>
+          <p class="text-text-muted text-sm">ทดสอบจากบัญชีจริง</p>
+        </div>
+        <div>
+          <p class="text-cta text-2xl font-bold">18+</p>
+          <p class="text-text-muted text-sm">เท่านั้น</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
