@@ -1,8 +1,0 @@
-# Affiliate link redirects
-# Add your actual affiliate URLs below, replacing the placeholder URLs
-/go/12bet-homepage/ https://www.12bet.com/?utm_source=thb-listing&utm_medium=review&utm_campaign=12bet-top 302
-/go/fun88-homepage/ https://www.fun88.com/?utm_source=thb-listing&utm_medium=review&utm_campaign=fun88 302
-/go/bet365-homepage/ https://www.bet365.com/?utm_source=thb-listing&utm_medium=review&utm_campaign=bet365 302
-/go/188bet-homepage/ https://www.188bet.com/?utm_source=thb-listing&utm_medium=review&utm_campaign=188bet 302
-/go/w88-homepage/ https://www.w88.com/?utm_source=thb-listing&utm_medium=review&utm_campaign=w88 302
-/go/1xbet-homepage/ https://www.1xbet.com/?utm_source=thb-listing&utm_medium=review&utm_campaign=1xbet 302
